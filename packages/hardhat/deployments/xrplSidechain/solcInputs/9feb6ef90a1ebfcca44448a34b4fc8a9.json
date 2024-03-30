@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/PayWord.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract PayWord {\n    function hash(string memory messageInput) public pure returns (bytes32) {\n        return keccak256(abi.encodePacked(messageInput));\n    }\n\n    function getHashChainItemByMessage(string memory messageInput, uint length) public pure returns (bytes32) {\n        bytes32 hashValue = keccak256(abi.encodePacked(messageInput));\n        for (uint i = 0; i < length; i++) {\n            hashValue = keccak256(abi.encodePacked(hashValue));\n        }\n        return hashValue;\n    }\n    function getHashChainArrayByMessage(string memory messageInput, uint length) public pure returns (bytes32[] memory) {\n        bytes32[] memory hashChain = new bytes32[](length + 1);\n        hashChain[0] = keccak256(abi.encodePacked(messageInput));\n        for (uint i = 1; i <= length; i++) {\n            hashChain[i] = keccak256(abi.encodePacked(hashChain[i - 1]));\n        }\n        return hashChain;\n    }\n\n    function isPayWordValid(string memory payWord, string memory userMessage, uint n) public pure returns (bool) {\n        bytes32 calculatedWn = getHashChainItemByMessage(payWord, n);\n        bytes32 receivedWn = keccak256(abi.encodePacked(userMessage));\n        return calculatedWn == receivedWn;\n    }\n    \n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

@@ -118,7 +118,12 @@ const config: HardhatUserConfig = {
       url: "https://sepolia.publicgoods.network",
       accounts: [deployerPrivateKey],
     },
+    xrplSidechain: {
+      url: "https://rpc-evm-sidechain.xrpl.org",
+      accounts: [deployerPrivateKey],
+    },
   },
+
   // configuration for harhdat-verify plugin
   etherscan: {
     apiKey: `${etherscanApiKey}`,
