@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/EthWord.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract EthWord {\n    address public channelSender;\n    address public channelRecipient;\n    uint public startDate;\n    uint public channelDuration;\n    uint public channelMargin;\n    bytes32 public channelTip;\n    bool public isActive;\n\n    constructor(address to, uint timeout, uint margin, bytes32 tip) payable {\n        channelRecipient = to;\n        channelSender = msg.sender;\n        startDate = block.timestamp;\n        channelDuration = timeout;\n        channelMargin = margin;\n        channelTip = tip;\n        isActive = true;\n    }\n\n    modifier onlyActive() {\n        require(isActive, \"Channel is not active.\");\n        _;\n    }\n\n    function closeChannel(bytes32 _word, uint8 _wordCount) public onlyActive {\n        require(msg.sender == channelRecipient, \"Only the recipient can close the channel.\");\n        bytes32 wordScratch = _word;\n        for (uint i = 1; i <= _wordCount; i++) {\n            wordScratch = keccak256(abi.encodePacked(wordScratch));\n        }\n\n        require(wordScratch == channelTip, \"Invalid word or word count.\");\n        uint256 amount = (100 - _wordCount);\n        (bool sent, ) = channelRecipient.call{value: amount * channelMargin}(\"\");\n        require(sent, \"Failed to send Ether\");\n        deactivate();\n    }\n\n    function expireChannel() public onlyActive {\n        require(block.timestamp >= startDate + channelDuration, \"Channel timeout has not been reached.\");\n        deactivate();\n    }\n\n    function deactivate() private {\n        isActive = false;\n        uint balance = address(this).balance;\n        if (balance > 0) {\n            (bool sent, ) = channelSender.call{value: balance}(\"\");\n            require(sent, \"Failed to return remaining Ether to sender\");\n        }\n    }\n\n    receive() external payable {}\n\n    fallback() external payable {}\n}"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

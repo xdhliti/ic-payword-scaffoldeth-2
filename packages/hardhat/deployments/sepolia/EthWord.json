@@ -1,0 +1,274 @@
+{
+  "address": "0x8955d488eeA03084EF9F6156327E6e7bB5FA16E2",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timeout",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "margin",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "tip",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "constructor"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "inputs": [],
+      "name": "channelDuration",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "channelMargin",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "channelRecipient",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "channelSender",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "channelTip",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_word",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint8",
+          "name": "_wordCount",
+          "type": "uint8"
+        }
+      ],
+      "name": "closeChannel",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "expireChannel",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "isActive",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "startDate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "transactionHash": "0x5f4bacf993d72a6b01b3f592311d581a4dc0ea4256c68d58a2db5a6ded930681",
+  "receipt": {
+    "to": null,
+    "from": "0xB6BC30f0A3ce4A94a9fA7B89161C918bfee2e413",
+    "contractAddress": "0x8955d488eeA03084EF9F6156327E6e7bB5FA16E2",
+    "transactionIndex": 75,
+    "gasUsed": "557776",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x771e2d39a4b8f1ff0a54ff6707c38e21279b19892b1f18fd2b940287e9ef2394",
+    "transactionHash": "0x5f4bacf993d72a6b01b3f592311d581a4dc0ea4256c68d58a2db5a6ded930681",
+    "logs": [],
+    "blockNumber": 5711186,
+    "cumulativeGasUsed": "12964704",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0xB6BC30f0A3ce4A94a9fA7B89161C918bfee2e413",
+    86400,
+    "100000000000000000",
+    "0x65462b0520ef7d3df61b9992ed3bea0c56ead753be7c8b3614e0ce01e4cac41b"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "c1a1d062400c4a94322a91cca9dea6ce",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"timeout\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"margin\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"tip\",\"type\":\"bytes32\"}],\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"channelDuration\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"channelMargin\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"channelRecipient\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"channelSender\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"channelTip\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_word\",\"type\":\"bytes32\"},{\"internalType\":\"uint8\",\"name\":\"_wordCount\",\"type\":\"uint8\"}],\"name\":\"closeChannel\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"expireChannel\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"isActive\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"startDate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/EthWord.sol\":\"EthWord\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/EthWord.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\ncontract EthWord {\\n    address public channelSender;\\n    address public channelRecipient;\\n    uint public startDate;\\n    uint public channelDuration;\\n    uint public channelMargin;\\n    bytes32 public channelTip;\\n    bool public isActive;\\n\\n    constructor(address to, uint timeout, uint margin, bytes32 tip) payable {\\n        channelRecipient = to;\\n        channelSender = msg.sender;\\n        startDate = block.timestamp;\\n        channelDuration = timeout;\\n        channelMargin = margin;\\n        channelTip = tip;\\n        isActive = true;\\n    }\\n\\n    modifier onlyActive() {\\n        require(isActive, \\\"Channel is not active.\\\");\\n        _;\\n    }\\n\\n    function closeChannel(bytes32 _word, uint8 _wordCount) public onlyActive {\\n        require(msg.sender == channelRecipient, \\\"Only the recipient can close the channel.\\\");\\n        bytes32 wordScratch = _word;\\n        for (uint i = 1; i <= _wordCount; i++) {\\n            wordScratch = keccak256(abi.encodePacked(wordScratch));\\n        }\\n\\n        require(wordScratch == channelTip, \\\"Invalid word or word count.\\\");\\n        uint256 amount = (100 - _wordCount);\\n        (bool sent, ) = channelRecipient.call{value: amount * channelMargin}(\\\"\\\");\\n        require(sent, \\\"Failed to send Ether\\\");\\n        deactivate();\\n    }\\n\\n    function expireChannel() public onlyActive {\\n        require(block.timestamp >= startDate + channelDuration, \\\"Channel timeout has not been reached.\\\");\\n        deactivate();\\n    }\\n\\n    function deactivate() private {\\n        isActive = false;\\n        uint balance = address(this).balance;\\n        if (balance > 0) {\\n            (bool sent, ) = channelSender.call{value: balance}(\\\"\\\");\\n            require(sent, \\\"Failed to return remaining Ether to sender\\\");\\n        }\\n    }\\n\\n    receive() external payable {}\\n\\n    fallback() external payable {}\\n}\",\"keccak256\":\"0x8a6783c729189431b06a80f0feb871be6d4e007dd723711ccb352418dcf21b79\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60806040526040516107083803806107088339810160408190526100229161006e565b600180546001600160a01b039095166001600160a01b0319958616178155600080549095163317909455426002556003929092556004556005556006805460ff191690911790556100b9565b6000806000806080858703121561008457600080fd5b84516001600160a01b038116811461009b57600080fd5b60208601516040870151606090970151919890975090945092505050565b610640806100c86000396000f3fe6080604052600436106100845760003560e01c80631184327e116100565780631184327e1461012457806322f3e2d414610139578063ac514d2714610163578063b8adc68914610179578063e0b03d591461019957005b806304758e791461008d578063075aa0c4146100ca5780630897d04a146100ea5780630b97bc861461010e57005b3661008b57005b005b34801561009957600080fd5b506001546100ad906001600160a01b031681565b6040516001600160a01b0390911681526020015b60405180910390f35b3480156100d657600080fd5b506000546100ad906001600160a01b031681565b3480156100f657600080fd5b5061010060045481565b6040519081526020016100c1565b34801561011a57600080fd5b5061010060025481565b34801561013057600080fd5b5061008b6101af565b34801561014557600080fd5b506006546101539060ff1681565b60405190151581526020016100c1565b34801561016f57600080fd5b5061010060035481565b34801561018557600080fd5b5061008b61019436600461055c565b610276565b3480156101a557600080fd5b5061010060055481565b60065460ff166101ff5760405162461bcd60e51b815260206004820152601660248201527521b430b73732b61034b9903737ba1030b1ba34bb329760511b60448201526064015b60405180910390fd5b60035460025461020f91906105a8565b42101561026c5760405162461bcd60e51b815260206004820152602560248201527f4368616e6e656c2074696d656f757420686173206e6f74206265656e2072656160448201526431b432b21760d91b60648201526084016101f6565b610274610490565b565b60065460ff166102c15760405162461bcd60e51b815260206004820152601660248201527521b430b73732b61034b9903737ba1030b1ba34bb329760511b60448201526064016101f6565b6001546001600160a01b0316331461032d5760405162461bcd60e51b815260206004820152602960248201527f4f6e6c792074686520726563697069656e742063616e20636c6f7365207468656044820152681031b430b73732b61760b91b60648201526084016101f6565b8160015b8260ff16811161037257604080516020810184905201604051602081830303815290604052805190602001209150808061036a906105c1565b915050610331565b5060055481146103c45760405162461bcd60e51b815260206004820152601b60248201527f496e76616c696420776f7264206f7220776f726420636f756e742e000000000060448201526064016101f6565b60006103d18360646105da565b60015460045460ff9290921692506000916001600160a01b03909116906103f890846105f3565b604051600081818185875af1925050503d8060008114610434576040519150601f19603f3d011682016040523d82523d6000602084013e610439565b606091505b50509050806104815760405162461bcd60e51b81526020600482015260146024820152732330b4b632b2103a379039b2b7321022ba3432b960611b60448201526064016101f6565b610489610490565b5050505050565b6006805460ff1916905547801561055957600080546040516001600160a01b039091169083908381818185875af1925050503d80600081146104ee576040519150601f19603f3d011682016040523d82523d6000602084013e6104f3565b606091505b50509050806105575760405162461bcd60e51b815260206004820152602a60248201527f4661696c656420746f2072657475726e2072656d61696e696e67204574686572604482015269103a379039b2b73232b960b11b60648201526084016101f6565b505b50565b6000806040838503121561056f57600080fd5b82359150602083013560ff8116811461058757600080fd5b809150509250929050565b634e487b7160e01b600052601160045260246000fd5b808201808211156105bb576105bb610592565b92915050565b6000600182016105d3576105d3610592565b5060010190565b60ff82811682821603908111156105bb576105bb610592565b80820281158282048414176105bb576105bb61059256fea26469706673582212200effc7b34bf2ce3f279bed52927257bebb230c45e8c2faa35e3f6134f7954af264736f6c63430008110033",
+  "deployedBytecode": "0x6080604052600436106100845760003560e01c80631184327e116100565780631184327e1461012457806322f3e2d414610139578063ac514d2714610163578063b8adc68914610179578063e0b03d591461019957005b806304758e791461008d578063075aa0c4146100ca5780630897d04a146100ea5780630b97bc861461010e57005b3661008b57005b005b34801561009957600080fd5b506001546100ad906001600160a01b031681565b6040516001600160a01b0390911681526020015b60405180910390f35b3480156100d657600080fd5b506000546100ad906001600160a01b031681565b3480156100f657600080fd5b5061010060045481565b6040519081526020016100c1565b34801561011a57600080fd5b5061010060025481565b34801561013057600080fd5b5061008b6101af565b34801561014557600080fd5b506006546101539060ff1681565b60405190151581526020016100c1565b34801561016f57600080fd5b5061010060035481565b34801561018557600080fd5b5061008b61019436600461055c565b610276565b3480156101a557600080fd5b5061010060055481565b60065460ff166101ff5760405162461bcd60e51b815260206004820152601660248201527521b430b73732b61034b9903737ba1030b1ba34bb329760511b60448201526064015b60405180910390fd5b60035460025461020f91906105a8565b42101561026c5760405162461bcd60e51b815260206004820152602560248201527f4368616e6e656c2074696d656f757420686173206e6f74206265656e2072656160448201526431b432b21760d91b60648201526084016101f6565b610274610490565b565b60065460ff166102c15760405162461bcd60e51b815260206004820152601660248201527521b430b73732b61034b9903737ba1030b1ba34bb329760511b60448201526064016101f6565b6001546001600160a01b0316331461032d5760405162461bcd60e51b815260206004820152602960248201527f4f6e6c792074686520726563697069656e742063616e20636c6f7365207468656044820152681031b430b73732b61760b91b60648201526084016101f6565b8160015b8260ff16811161037257604080516020810184905201604051602081830303815290604052805190602001209150808061036a906105c1565b915050610331565b5060055481146103c45760405162461bcd60e51b815260206004820152601b60248201527f496e76616c696420776f7264206f7220776f726420636f756e742e000000000060448201526064016101f6565b60006103d18360646105da565b60015460045460ff9290921692506000916001600160a01b03909116906103f890846105f3565b604051600081818185875af1925050503d8060008114610434576040519150601f19603f3d011682016040523d82523d6000602084013e610439565b606091505b50509050806104815760405162461bcd60e51b81526020600482015260146024820152732330b4b632b2103a379039b2b7321022ba3432b960611b60448201526064016101f6565b610489610490565b5050505050565b6006805460ff1916905547801561055957600080546040516001600160a01b039091169083908381818185875af1925050503d80600081146104ee576040519150601f19603f3d011682016040523d82523d6000602084013e6104f3565b606091505b50509050806105575760405162461bcd60e51b815260206004820152602a60248201527f4661696c656420746f2072657475726e2072656d61696e696e67204574686572604482015269103a379039b2b73232b960b11b60648201526084016101f6565b505b50565b6000806040838503121561056f57600080fd5b82359150602083013560ff8116811461058757600080fd5b809150509250929050565b634e487b7160e01b600052601160045260246000fd5b808201808211156105bb576105bb610592565b92915050565b6000600182016105d3576105d3610592565b5060010190565b60ff82811682821603908111156105bb576105bb610592565b80820281158282048414176105bb576105bb61059256fea26469706673582212200effc7b34bf2ce3f279bed52927257bebb230c45e8c2faa35e3f6134f7954af264736f6c63430008110033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 3,
+        "contract": "contracts/EthWord.sol:EthWord",
+        "label": "channelSender",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 5,
+        "contract": "contracts/EthWord.sol:EthWord",
+        "label": "channelRecipient",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_address"
+      },
+      {
+        "astId": 7,
+        "contract": "contracts/EthWord.sol:EthWord",
+        "label": "startDate",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 9,
+        "contract": "contracts/EthWord.sol:EthWord",
+        "label": "channelDuration",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 11,
+        "contract": "contracts/EthWord.sol:EthWord",
+        "label": "channelMargin",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 13,
+        "contract": "contracts/EthWord.sol:EthWord",
+        "label": "channelTip",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_bytes32"
+      },
+      {
+        "astId": 15,
+        "contract": "contracts/EthWord.sol:EthWord",
+        "label": "isActive",
+        "offset": 0,
+        "slot": "6",
+        "type": "t_bool"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_bytes32": {
+        "encoding": "inplace",
+        "label": "bytes32",
+        "numberOfBytes": "32"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
