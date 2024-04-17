@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import "hardhat/console.sol";
+
 contract EthWord {
     address public channelSender;
     address public channelRecipient;
@@ -26,10 +28,13 @@ contract EthWord {
     }
 
     function closeChannel(bytes32 _word, uint8 _wordCount) public onlyActive {
+        console.logBytes32(_word);
         require(msg.sender == channelRecipient, "Only the recipient can close the channel.");
         bytes32 wordScratch = _word;
+        console.logBytes32(wordScratch);
         for (uint i = 1; i <= _wordCount; i++) {
             wordScratch = keccak256(abi.encodePacked(wordScratch));
+            console.logBytes32(wordScratch);
         }
 
         require(wordScratch == channelTip, "Invalid word or word count.");
