@@ -1,6 +1,7 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
 import { EthWord, EthWord__factory } from "../typechain-types";
+import { BytesLike, Signer } from "ethers";
 
 function calculateKeccak256(types: string[], values: (string | number)[]) {
   return ethers.keccak256(ethers.solidityPacked(types, values));
@@ -15,7 +16,8 @@ function calculateKeccak256(types: string[], values: (string | number)[]) {
 // }
 // Exemplo de uso:
 const generateHashChain = (base: string, length: number) => {
-  let currentHash = calculateKeccak256(["string"], [base]);
+  //let currentHash = calculateKeccak256(["string"], [base]);
+  let currentHash = base;
   console.log(currentHash);
   const hashChain = [currentHash];
 
@@ -29,10 +31,10 @@ const generateHashChain = (base: string, length: number) => {
 
 describe("EthWord Contract", function () {
   let ethWord: EthWord;
-  let owner, recipient, otherAccount;
-  let margin, timeout, tip;
+  let owner: Signer, recipient: Signer, otherAccount: Signer;
+  let margin, timeout: number, tip: BytesLike;
   const secret = "secret";
-  let hashChain;
+  let hashChain: BytesLike[];
 
   before(async function () {
     [owner, recipient, otherAccount] = await ethers.getSigners();
@@ -42,7 +44,7 @@ describe("EthWord Contract", function () {
     console.log("AAAAAAAAAA 2", calculateKeccak256(["bytes32"], [tip]));
     const EthWordFactory = (await ethers.getContractFactory("EthWord")) as EthWord__factory;
     ethWord = await EthWordFactory.deploy(recipient.address, timeout, margin, tip, { value: margin });
-    hashChain = generateHashChain(secret, 100);
+    hashChain = generateHashChain(tip, 100);
   });
 
   describe("Deployment", function () {
