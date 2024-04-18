@@ -2,18 +2,16 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 import { EthWord, EthWord__factory } from "../typechain-types";
 import { BytesLike, Signer } from "ethers";
+import { AbiCoder } from "@ethersproject/abi";
 
-function calculateKeccak256(types: string[], values: (string | number)[]) {
-  return ethers.keccak256(ethers.solidityPacked(types, values));
-  //encodeBytes32String
-}
-// function calculateKeccak256(type: string, value: string | Uint8Array) {
-//   if (type === "string") {
-//     return ethers.keccak256(ethers.defaultAbiCoder.encode(["string"], [value]));
-//   } else { // assuming type is "bytes32"
-//     return ethers.keccak256(value);
-//   }
+// function calculateKeccak256(types: string[], values: (string | number)[]) {
+//   return ethers.keccak256(ethers.solidityPacked(types, values));
+//   //encodeBytes32String
 // }
+const abiCoder = new AbiCoder();
+function calculateKeccak256(type: string[], value: (string | Uint8Array)[]) {
+  return ethers.keccak256(abiCoder.encode(["string"], [value]));
+}
 // Exemplo de uso:
 const generateHashChain = (base: string, length: number) => {
   //let currentHash = calculateKeccak256(["string"], [base]);
@@ -22,7 +20,7 @@ const generateHashChain = (base: string, length: number) => {
   const hashChain = [currentHash];
 
   for (let i = 1; i < length; i++) {
-    currentHash = calculateKeccak256(["bytes32"], [currentHash]);
+    currentHash = calculateKeccak256(["string"], [currentHash]);
     hashChain.push(currentHash);
   }
 
@@ -41,16 +39,19 @@ describe("EthWord Contract", function () {
     margin = ethers.parseEther("1"); // 1 Ether
     timeout = 3600; // 1 hour
     tip = calculateKeccak256(["string"], [secret]);
-    console.log("AAAAAAAAAA 2", calculateKeccak256(["bytes32"], [tip]));
+    const recipientAddress = await recipient.getAddress();
+    console.log("AAAAAAAAAA 2", calculateKeccak256(["atring"], [tip]));
     const EthWordFactory = (await ethers.getContractFactory("EthWord")) as EthWord__factory;
-    ethWord = await EthWordFactory.deploy(recipient.address, timeout, margin, tip, { value: margin });
+    ethWord = await EthWordFactory.deploy(recipientAddress, timeout, margin, tip, { value: margin });
     hashChain = generateHashChain(tip, 100);
   });
 
   describe("Deployment", function () {
     it("Should set the right recipient and sender", async function () {
-      expect(await ethWord.channelRecipient()).to.equal(recipient.address);
-      expect(await ethWord.channelSender()).to.equal(owner.address);
+      const recipientAddress = await recipient.getAddress();
+      const ownerAddress = await owner.getAddress();
+      expect(await ethWord.channelRecipient()).to.equal(recipientAddress);
+      expect(await ethWord.channelSender()).to.equal(ownerAddress);
     });
 
     it("Should have the correct initial states", async function () {
