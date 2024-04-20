@@ -2,16 +2,15 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 import { EthWord, EthWord__factory } from "../typechain-types";
 import { BytesLike, Signer } from "ethers";
-import { AbiCoder } from "@ethersproject/abi";
 
-// function calculateKeccak256(types: string[], values: (string | number)[]) {
-//   return ethers.keccak256(ethers.solidityPacked(types, values));
-//   //encodeBytes32String
-// }
-const abiCoder = new AbiCoder();
-function calculateKeccak256(type: string[], value: (string | Uint8Array)[]) {
-  return ethers.keccak256(abiCoder.encode(["string"], [value]));
+function calculateKeccak256(types: string[], values: (string | number)[]) {
+  return ethers.keccak256(ethers.solidityPacked(types, values));
+  //encodeBytes32String
 }
+// const abiCoder = new AbiCoder();
+// function calculateKeccak256(type: string[], value: (string | Uint8Array)[]) {
+//   return ethers.keccak256(abiCoder.encode(["string"], [value]));
+// }
 // Exemplo de uso:
 const generateHashChain = (base: string, length: number) => {
   //let currentHash = calculateKeccak256(["string"], [base]);
@@ -20,7 +19,7 @@ const generateHashChain = (base: string, length: number) => {
   const hashChain = [currentHash];
 
   for (let i = 1; i < length; i++) {
-    currentHash = calculateKeccak256(["string"], [currentHash]);
+    currentHash = calculateKeccak256(["bytes32"], [currentHash]);
     hashChain.push(currentHash);
   }
 
@@ -40,7 +39,7 @@ describe("EthWord Contract", function () {
     timeout = 3600; // 1 hour
     tip = calculateKeccak256(["string"], [secret]);
     const recipientAddress = await recipient.getAddress();
-    console.log("AAAAAAAAAA 2", calculateKeccak256(["atring"], [tip]));
+    console.log("AAAAAAAAAA 2", calculateKeccak256(["string"], [tip]));
     const EthWordFactory = (await ethers.getContractFactory("EthWord")) as EthWord__factory;
     ethWord = await EthWordFactory.deploy(recipientAddress, timeout, margin, tip, { value: margin });
     hashChain = generateHashChain(tip, 100);
