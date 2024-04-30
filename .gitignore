@@ -13,3 +13,6 @@ node_modules
 .vscode
 .idea
 .vercel
+packages/hardhat/deployments/xrplSidechain/EthWord.json
+yarn.lock
+packages/hardhat/deployments/xrplSidechain/solcInputs/cfd2b7e6f7e4ac49a1e8d314e93790f8.json

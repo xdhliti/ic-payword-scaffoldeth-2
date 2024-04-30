@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "hardhat/console.sol";
-
 contract EthWord {
     address public channelSender;
     address public channelRecipient;
@@ -11,8 +9,10 @@ contract EthWord {
     uint public channelMargin;
     bytes32 public channelTip;
     bool public isActive;
+    uint public n;
+    uint256 marginPerHash;
 
-    constructor(address to, uint timeout, uint margin, bytes32 tip) payable {
+    constructor(address to, uint timeout, uint margin, bytes32 tip, uint divisions) payable {
         channelRecipient = to;
         channelSender = msg.sender;
         startDate = block.timestamp;
@@ -20,6 +20,8 @@ contract EthWord {
         channelMargin = margin;
         channelTip = tip;
         isActive = true;
+        n = divisions;
+        marginPerHash =  address(this).balance / n;
     }
 
     modifier onlyActive() {
@@ -28,20 +30,31 @@ contract EthWord {
     }
 
     function closeChannel(bytes32 _word, uint8 _wordCount) public onlyActive {
-        console.logBytes32(_word);
         require(msg.sender == channelRecipient, "Only the recipient can close the channel.");
         bytes32 wordScratch = _word;
-        console.logBytes32(wordScratch);
+
         for (uint i = 1; i <= _wordCount; i++) {
             wordScratch = keccak256(abi.encodePacked(wordScratch));
-            console.logBytes32(wordScratch);
         }
 
         require(wordScratch == channelTip, "Invalid word or word count.");
-        uint256 amount = (100 - _wordCount);
-        (bool sent, ) = channelRecipient.call{value: amount * channelMargin}("");
+
+        channelTip = _word;
+        n -= _wordCount;
+
+        uint256 transferAmount = _wordCount * marginPerHash;
+        require(address(this).balance >= transferAmount, "Insufficient balance to perform transfer");
+        
+        (bool sent, ) = channelRecipient.call{value: transferAmount}("");
         require(sent, "Failed to send Ether");
-        deactivate();
+        
+        uint256 balanceLeft = address(this).balance;
+        (bool sentToSender, ) = channelSender.call{value: balanceLeft}("");
+        require(sentToSender, "Failed to send Ether to sender");
+
+        if (n <= 0) {
+            isActive = false;
+        }
     }
 
     function expireChannel() public onlyActive {

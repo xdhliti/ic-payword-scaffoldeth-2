@@ -26,11 +26,12 @@ const deployEthWord: DeployFunction = async function (hre: HardhatRuntimeEnviron
   const timeout = 86400;
   const margin = ethers.parseEther("0.1");
   const tip = ethers.keccak256(ethers.toUtf8Bytes("secret"));
+  const n = 100;
 
   await deploy("EthWord", {
     from: deployer,
     // Contract constructor arguments
-    args: [toAddress, timeout, margin, tip],
+    args: [toAddress, timeout, margin, tip, n],
     value: margin.toString(),
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by

@@ -1,21 +1,13 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
 import { EthWord, EthWord__factory } from "../typechain-types";
-import { BytesLike, Signer } from "ethers";
+import { BytesLike, type Signer } from "ethers";
 
 function calculateKeccak256(types: string[], values: (string | number)[]) {
-  return ethers.keccak256(ethers.solidityPacked(types, values));
-  //encodeBytes32String
+  return ethers.solidityPackedKeccak256(types, values);
 }
-// const abiCoder = new AbiCoder();
-// function calculateKeccak256(type: string[], value: (string | Uint8Array)[]) {
-//   return ethers.keccak256(abiCoder.encode(["string"], [value]));
-// }
-// Exemplo de uso:
 const generateHashChain = (base: string, length: number) => {
-  //let currentHash = calculateKeccak256(["string"], [base]);
   let currentHash = base;
-  console.log(currentHash);
   const hashChain = [currentHash];
 
   for (let i = 1; i < length; i++) {
@@ -29,20 +21,20 @@ const generateHashChain = (base: string, length: number) => {
 describe("EthWord Contract", function () {
   let ethWord: EthWord;
   let owner: Signer, recipient: Signer, otherAccount: Signer;
-  let margin, timeout: number, tip: BytesLike;
+  let margin, timeout: number, tip: BytesLike, h0: BytesLike, n: number;
   const secret = "secret";
   let hashChain: BytesLike[];
-
-  before(async function () {
+  beforeEach(async function () {
     [owner, recipient, otherAccount] = await ethers.getSigners();
-    margin = ethers.parseEther("1"); // 1 Ether
-    timeout = 3600; // 1 hour
-    tip = calculateKeccak256(["string"], [secret]);
+    margin = ethers.parseEther("1");
+    n = 200;
+    timeout = 3600;
+    h0 = calculateKeccak256(["string"], [secret]);
+    hashChain = generateHashChain(h0, 100);
+    tip = hashChain[99];
     const recipientAddress = await recipient.getAddress();
-    console.log("AAAAAAAAAA 2", calculateKeccak256(["string"], [tip]));
     const EthWordFactory = (await ethers.getContractFactory("EthWord")) as EthWord__factory;
-    ethWord = await EthWordFactory.deploy(recipientAddress, timeout, margin, tip, { value: margin });
-    hashChain = generateHashChain(tip, 100);
+    ethWord = await EthWordFactory.deploy(recipientAddress, timeout, margin, tip, n, { value: margin });
   });
 
   describe("Deployment", function () {
@@ -66,12 +58,13 @@ describe("EthWord Contract", function () {
     });
     it("Should allow the channel to be closed correctly by the recipient with the right hash", async function () {
       const wordCount = 10;
-      const finalHash = hashChain[wordCount];
-      //const initialBalance = await recipient.getBalance();
+      const finalHash = hashChain[199 - wordCount];
+      const initialBalance = await ethers.provider.getBalance(recipient.getAddress());
       await ethWord.connect(recipient).closeChannel(finalHash, wordCount);
-      //const newBalance = await recipient.getBalance();
-      expect(await ethWord.isActive()).to.be.false;
-      //expect(newBalance).to.be.above(initialBalance);
+      const newBalance = await ethers.provider.getBalance(recipient.getAddress());
+      //expect(await ethWord.isActive()).to.be.false;
+      expect(await ethWord.n()).to.equal(n - wordCount);
+      expect(newBalance).to.be.above(initialBalance);
     });
 
     it("Should fail to close the channel with invalid word or word count", async function () {

@@ -6,47 +6,94 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
   31337: {
-    PayWord: {
+    EthWord: {
       address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
       abi: [
         {
           inputs: [
             {
-              internalType: "string",
-              name: "messageInput",
-              type: "string",
+              internalType: "address",
+              name: "to",
+              type: "address",
             },
             {
               internalType: "uint256",
-              name: "length",
+              name: "timeout",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "margin",
+              type: "uint256",
+            },
+            {
+              internalType: "bytes32",
+              name: "tip",
+              type: "bytes32",
+            },
+          ],
+          stateMutability: "payable",
+          type: "constructor",
+        },
+        {
+          stateMutability: "payable",
+          type: "fallback",
+        },
+        {
+          inputs: [],
+          name: "channelDuration",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
               type: "uint256",
             },
           ],
-          name: "getHashChainArrayByMessage",
-          outputs: [
-            {
-              internalType: "bytes32[]",
-              name: "",
-              type: "bytes32[]",
-            },
-          ],
-          stateMutability: "pure",
+          stateMutability: "view",
           type: "function",
         },
         {
-          inputs: [
-            {
-              internalType: "string",
-              name: "messageInput",
-              type: "string",
-            },
+          inputs: [],
+          name: "channelMargin",
+          outputs: [
             {
               internalType: "uint256",
-              name: "length",
+              name: "",
               type: "uint256",
             },
           ],
-          name: "getHashChainItemByMessage",
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "channelRecipient",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "channelSender",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "channelTip",
           outputs: [
             {
               internalType: "bytes32",
@@ -54,47 +101,37 @@ const deployedContracts = {
               type: "bytes32",
             },
           ],
-          stateMutability: "pure",
+          stateMutability: "view",
           type: "function",
         },
         {
           inputs: [
-            {
-              internalType: "string",
-              name: "messageInput",
-              type: "string",
-            },
-          ],
-          name: "hash",
-          outputs: [
             {
               internalType: "bytes32",
-              name: "",
+              name: "_word",
               type: "bytes32",
             },
+            {
+              internalType: "uint8",
+              name: "_wordCount",
+              type: "uint8",
+            },
           ],
-          stateMutability: "pure",
+          name: "closeChannel",
+          outputs: [],
+          stateMutability: "nonpayable",
           type: "function",
         },
         {
-          inputs: [
-            {
-              internalType: "string",
-              name: "payWord",
-              type: "string",
-            },
-            {
-              internalType: "string",
-              name: "userMessage",
-              type: "string",
-            },
-            {
-              internalType: "uint256",
-              name: "n",
-              type: "uint256",
-            },
-          ],
-          name: "isPayWordValid",
+          inputs: [],
+          name: "expireChannel",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "isActive",
           outputs: [
             {
               internalType: "bool",
@@ -102,8 +139,25 @@ const deployedContracts = {
               type: "bool",
             },
           ],
-          stateMutability: "pure",
+          stateMutability: "view",
           type: "function",
+        },
+        {
+          inputs: [],
+          name: "startDate",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          stateMutability: "payable",
+          type: "receive",
         },
       ],
       inheritedFunctions: {},
@@ -111,7 +165,7 @@ const deployedContracts = {
   },
   1440002: {
     EthWord: {
-      address: "0xe3fEA2617C0765d647FB0CD5dCc1BD43aE81F01e",
+      address: "0x3A4f64A8F5D1601EBb3CC5A68e547eb1d9297E15",
       abi: [
         {
           inputs: [
